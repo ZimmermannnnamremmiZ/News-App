@@ -1,1 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body class="purple lighten-5">
+  <nav>
+    <div class="nav-wrapper purple accent-1">
+      <a href="#" class="brand-logo">News app</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="https://github.com/ZimmermannnnamremmiZ/News-App.git">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="row">
+    <form class="col s6 z-depth-4 blue lighten-4" style="border: solid 1px rgb(114, 114, 114); margin-top: 35px">
+      <h5>Search news</h5>
+      <label>Choose your country</label>
+      <select class="browser-default">
+        <option value="" disabled selected>Country</option>
+        <option value="1">United States</option>
+        <option value="2">France</option>
+        <option value="3">Russia</option>
+      </select>
+      <div class="input-field">
+        <input type="text" id="autocomplete-input" class="autocomplete" name="search">
+        <label for="autocomplete-input">Search</label>
+      </div>
+      <div class="card-action">
+        <a class="waves-effect waves-light btn" style="margin-bottom: 10px;">Search
+          <i class="material-icons right">search</i></a>
+      </div>
+    </form>
+  </div>
+
+  <div class="news-container">
+      <div class="container">
+        <div class="row grid-container">
+          <!-- Page Content goes here -->
+        </div>
+      </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+</html>
