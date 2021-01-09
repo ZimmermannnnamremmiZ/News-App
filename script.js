@@ -103,6 +103,15 @@ function loadNews() {
 // Function on get responce from server  (функция, которая будет должна отработать после получения новостей)
 
 function onGetResponse(err, res) {
+    if (err) {
+        showAlert(err, 'error-msg');
+        return;
+    };
+
+    if (!res.articles.length) {
+        // show wmpty message
+        return;
+    }
     renderNews(res.articles);
 }
 
@@ -119,9 +128,22 @@ function renderNews(news) {
     newsContainer.insertAdjacentHTML('afterbegin', fragment)
 }
 
+// Function clear container (либо в innerHtml записать пустую строку, либо пройтись циклом по всем дочерним элементам и удалить их по одному)
+function clearContainer(container) {
+    let child = container.lastElementChild;
+    while (child) {
+        container.removeChild(child)
+    }
+}
+
 // News item template function       news деструктурировали
-function newsTemplate({ urlToImage, title, url, description }) {
-return `
+function newsTemplate({
+    urlToImage,
+    title,
+    url,
+    description
+}) {
+    return `
         <div class="col s12">
             <div class="card">
                 <div class="card-image">
@@ -139,6 +161,15 @@ return `
         `;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     M.AutoInit();
-  });
+});
+
+// toast Materialize (создали функцию обертку)
+function showAlert(msg, type = "success") {
+    // M это глобальный объект материалайза в JS
+    M.toast({
+        html: msg,
+        classes: type
+    });
+}
