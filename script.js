@@ -62,7 +62,7 @@ const newsService = (function () {
 
     return {
         topHeadlines(country = "us", cb) {
-            http.get(`${apiUrl}/top-headlines?country=${country}&category=technology&apiKey=${apiKey}`, cb)
+            http.get(`${apiUrl}/top-headlines?country=${country}&category=technology&apiKey=${apiKey}`, cb);
         },
         everything(query, cb) {
             http.get(`${apiUrl}/everything?q=${query}&apiKey=${apiKey}`, cb)
@@ -88,6 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // load news function
 function loadNews() {
+    showLoader();
     const country = countrySelect.value;
     const searchText = searchInput.value;
 
@@ -103,6 +104,8 @@ function loadNews() {
 // Function on get responce from server  (функция, которая будет должна отработать после получения новостей)
 
 function onGetResponse(err, res) {
+    removePreloader()
+
     if (err) {
         showAlert(err, 'error-msg');
         return;
@@ -118,6 +121,9 @@ function onGetResponse(err, res) {
 // Function render news
 function renderNews(news) {
     const newsContainer = document.querySelector('.news-container .row')
+    if (newsContainer.children.length) {
+        clearContainer(newsContainer);
+    }
     let fragment = "";
     news.forEach(newsItem => {
         const el = newsTemplate(newsItem);
@@ -128,11 +134,12 @@ function renderNews(news) {
     newsContainer.insertAdjacentHTML('afterbegin', fragment)
 }
 
-// Function clear container (либо в innerHtml записать пустую строку, либо пройтись циклом по всем дочерним элементам и удалить их по одному)
+// Function clear container (либо в innerHTML записать пустую строку (container.innerHTML = '';), либо пройтись циклом по всем дочерним элементам и удалить их по одному)
 function clearContainer(container) {
     let child = container.lastElementChild;
     while (child) {
-        container.removeChild(child)
+        container.removeChild(child);
+        child = container.lastElementChild;
     }
 }
 
@@ -172,4 +179,22 @@ function showAlert(msg, type = "success") {
         html: msg,
         classes: type
     });
+}
+
+
+// Show loader function (Material -> components -> preloader)
+function showLoader() {
+    document.body.insertAdjacentHTML('afterbegin', `
+    <div class="progress">
+        <div class="indeterminate"></div>
+    </div>
+    `)
+}
+
+// Remove loader function
+function removePreloader() {
+    const loader = document.querySelector('.progress')
+    if (loader) {
+        loader.remove();
+    }
 }
