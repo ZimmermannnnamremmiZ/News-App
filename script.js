@@ -61,8 +61,8 @@ const newsService = (function () {
     const apiUrl = 'https://news-api-v2.herokuapp.com';
 
     return {
-        topHeadlines(country = "us", cb) {
-            http.get(`${apiUrl}/top-headlines?country=${country}&category=technology&apiKey=${apiKey}`, cb);
+        topHeadlines(country = "us", category = "Technology", cb) {
+            http.get(`${apiUrl}/top-headlines?country=${country}&category=${category}&apiKey=${apiKey}`, cb);
         },
         everything(query, cb) {
             http.get(`${apiUrl}/everything?q=${query}&apiKey=${apiKey}`, cb)
@@ -74,6 +74,7 @@ const newsService = (function () {
 const form = document.forms['newsControls'];
 const countrySelect = form.elements['country'];
 const searchInput = form.elements['search'];
+const categorySelect = form.elements['categories']
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -91,10 +92,11 @@ function loadNews() {
     showLoader();
     const country = countrySelect.value;
     const searchText = searchInput.value;
+    const category = categorySelect.value;
 
     // если ничего не введено
     if (!searchText) {
-        newsService.topHeadlines(country, onGetResponse);
+        newsService.topHeadlines(country, category, onGetResponse);
     } else {
         newsService.everything(searchText, onGetResponse);
     }
@@ -112,7 +114,9 @@ function onGetResponse(err, res) {
     };
 
     if (!res.articles.length) {
-        // show wmpty message
+        // show empty message
+        var toastHTML = '<span>Нет новостей в данной категории</span><button class="btn-flat toast-action">Undo</button>';
+        M.toast({html: toastHTML});
         return;
     }
     renderNews(res.articles);
@@ -143,6 +147,7 @@ function clearContainer(container) {
     }
 }
 
+let img = "https://серебро.рф/img/placeholder.png"
 // News item template function       news деструктурировали
 function newsTemplate({
     urlToImage,
@@ -154,7 +159,7 @@ function newsTemplate({
         <div class="col s12">
             <div class="card">
                 <div class="card-image">
-                    <img src="${urlToImage}">
+                    <img src="${urlToImage}" onerror="this.src = 'https://серебро.рф/img/placeholder.png'">
                     <span class="card-title">${title || ""}</span>
                 </div>
                 <div class="card-content">
