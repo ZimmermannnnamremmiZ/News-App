@@ -1,0 +1,22 @@
+  .progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    z-index: 1;
+  }
+
+  .news-container .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: dense;
+  }
+
+  .input-field {
+    margin-top: 40px;
+  }
+
+  .card .card-image .card-title {
+    font-size: 13px;
+  }
