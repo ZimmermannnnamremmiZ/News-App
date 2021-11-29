@@ -20,3 +20,21 @@
   .card .card-image .card-title {
     font-size: 13px;
   }
+
+  .gradient {
+    background: linear-gradient(149deg, rgb(0, 255, 208) 0%, rgb(54, 172, 0) 42%, rgb(4, 0, 247) 72%, rgb(238, 0, 131) 100%);
+    animation: gradient 10s infinite alternate;
+    background-size: 1000%; 
+  }
+
+  @keyframes gradient {
+    0% {
+        background-position: 95% 0%;
+    }
+    50% {
+        background-position: 20% 100%;
+    }
+    100% {
+        background-position: 95% 0%;
+    }
+}
