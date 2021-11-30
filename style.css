@@ -7,6 +7,10 @@
     z-index: 1;
   }
 
+  .brand-logo {
+    margin-left: 30px;
+  }
+
   .news-container .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -22,7 +26,7 @@
   }
 
   .gradient {
-    background: linear-gradient(149deg, rgb(0, 255, 208) 0%, rgb(54, 172, 0) 42%, rgb(4, 0, 247) 72%, rgb(238, 0, 131) 100%);
+    background: linear-gradient(149deg, #91ffeb 0%, rgb(180, 255, 145) 42%, rgb(133, 131, 245) 72%, rgb(204, 145, 177) 100%);
     animation: gradient 10s infinite alternate;
     background-size: 1000%; 
   }
@@ -37,4 +41,28 @@
     100% {
         background-position: 95% 0%;
     }
+}
+
+
+@media only screen and (max-width: 992px) {
+  .brand-logo {
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 680px) {
+  .card-title {
+    display: none;
+  }
+}
+
+
+@media only screen and (max-width: 558px) {
+  .news-container .grid-container {
+    grid-template-columns: 1fr;
+  }
+
+  .row .col.s6 {
+    width: 100%;
+  }
 }

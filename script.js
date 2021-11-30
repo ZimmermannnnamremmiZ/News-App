@@ -134,7 +134,7 @@ function renderNews(news) {
         fragment += el;
     });
 
-    // Именно insertAdjacentHTML, не insertAdjacentElement, так как наам надо вставить не DOM объект, а html строку
+    // Именно insertAdjacentHTML, не insertAdjacentElement, так как нам надо вставить не DOM объект, а html строку
     newsContainer.insertAdjacentHTML('afterbegin', fragment)
 }
 
