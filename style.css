@@ -25,13 +25,13 @@
     font-size: 13px;
   }
 
-  .gradient {
+  .gradient_1 {
     background: linear-gradient(149deg, #91ffeb 0%, rgb(180, 255, 145) 42%, rgb(133, 131, 245) 72%, rgb(204, 145, 177) 100%);
-    animation: gradient 10s infinite alternate;
+    animation: gradient_1 10s infinite alternate;
     background-size: 1000%; 
   }
 
-  @keyframes gradient {
+  @keyframes gradient_1 {
     0% {
         background-position: 95% 0%;
     }
@@ -42,7 +42,6 @@
         background-position: 95% 0%;
     }
 }
-
 
 @media only screen and (max-width: 992px) {
   .brand-logo {
