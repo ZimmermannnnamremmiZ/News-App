@@ -26,7 +26,7 @@
   }
 
   .gradient_1 {
-    background: linear-gradient(149deg, #91ffeb 0%, rgb(180, 255, 145) 42%, rgb(133, 131, 245) 72%, rgb(204, 145, 177) 100%);
+    background: linear-gradient(149deg, #ff6e6e 0%, rgb(99, 175, 64) 42%, rgb(94, 92, 184) 72%, rgb(175, 122, 151) 100%);
     animation: gradient_1 10s infinite alternate;
     background-size: 1000%; 
   }

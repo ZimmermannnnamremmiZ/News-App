@@ -1,55 +1,20 @@
 function customHttp() {
     return {
         get(url, cb) {
-            try {
-                const xhr = new XMLHttpRequest();
-                xhr.open('GET', url);
-                xhr.addEventListener('load', () => {
-                    if (Math.floor(xhr.status / 100) !== 2) {
-                        cb(`Error. Status code: ${xhr.status}`, xhr);
+            fetch(url)
+                .then(res => {
+                    if (Math.floor(res.status / 100) !== 2) {
+                        cb(`Error. Status code: ${res.status}`);
                         return;
+                    } else {
+                        return res.json()
                     }
-                    const response = JSON.parse(xhr.responseText);
-                    cb(null, response);
-                });
-
-                xhr.addEventListener('error', () => {
-                    cb(`Error. Status code: ${xhr.status}`, xhr);
-                });
-
-                xhr.send();
-            } catch (error) {
-                cb(error);
-            }
-        },
-        post(url, body, headers, cb) {
-            try {
-                const xhr = new XMLHttpRequest();
-                xhr.open('POST', url);
-                xhr.addEventListener('load', () => {
-                    if (Math.floor(xhr.status / 100) !== 2) {
-                        cb(`Error. Status code: ${xhr.status}`, xhr);
-                        return;
-                    }
-                    const response = JSON.parse(xhr.responseText);
-                    cb(null, response);
-                });
-
-                xhr.addEventListener('error', () => {
-                    cb(`Error. Status code: ${xhr.status}`, xhr);
-                });
-
-                if (headers) {
-                    Object.entries(headers).forEach(([key, value]) => {
-                        xhr.setRequestHeader(key, value);
-                    });
-                }
-
-                xhr.send(JSON.stringify(body));
-            } catch (error) {
-                cb(error);
-            }
-        },
+                })
+                .then(res => cb(null, res))
+                .catch((error) => {
+                    cb(error)
+                })
+        }
     };
 }
 
@@ -61,7 +26,7 @@ const newsService = (function () {
     const apiUrl = 'https://gnews.io/api/v4/';
 
     return {
-        topHeadlines(country = "us", category="technology", cb) {
+        topHeadlines(country = "us", category = "technology", cb) {
             http.get(`${apiUrl}/top-headlines?country=${country}&topic=${category}&token=${apiKey}`, cb);
         },
         everything(query, cb) {
@@ -115,8 +80,10 @@ function onGetResponse(err, res) {
 
     if (!res.articles.length) {
         // show empty message
-        var toastHTML = '<span>Нет новостей в данной категории</span><button class="btn-flat toast-action">Close</button>';
-        M.toast({html: toastHTML});
+        let toastHTML = '<span>Нет новостей в данной категории</span><button class="btn-flat toast-action">Close</button>';
+        M.toast({
+            html: toastHTML
+        });
         return;
     }
     renderNews(res.articles);
