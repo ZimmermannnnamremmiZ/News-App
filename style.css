@@ -28,40 +28,42 @@
   .gradient_1 {
     background: linear-gradient(149deg, #ff6e6e 0%, rgb(99, 175, 64) 42%, rgb(94, 92, 184) 72%, rgb(175, 122, 151) 100%);
     animation: gradient_1 10s infinite alternate;
-    background-size: 1000%; 
+    background-size: 1000%;
   }
 
   @keyframes gradient_1 {
     0% {
-        background-position: 95% 0%;
+      background-position: 95% 0%;
     }
+
     50% {
-        background-position: 20% 100%;
+      background-position: 20% 100%;
     }
+
     100% {
-        background-position: 95% 0%;
+      background-position: 95% 0%;
     }
-}
-
-@media only screen and (max-width: 992px) {
-  .brand-logo {
-    margin-left: 0;
-  }
-}
-
-@media only screen and (max-width: 680px) {
-  .card-title {
-    display: none;
-  }
-}
-
-
-@media only screen and (max-width: 558px) {
-  .news-container .grid-container {
-    grid-template-columns: 1fr;
   }
 
-  .row .col.s6 {
-    width: 100%;
+  @media only screen and (max-width: 992px) {
+    .brand-logo {
+      margin-left: 0;
+    }
   }
-}
+
+  @media only screen and (max-width: 680px) {
+    .card-title {
+      display: none;
+    }
+  }
+
+
+  @media only screen and (max-width: 558px) {
+    .news-container .grid-container {
+      grid-template-columns: 1fr;
+    }
+
+    .row .col.s6 {
+      width: 100%;
+    }
+  }
